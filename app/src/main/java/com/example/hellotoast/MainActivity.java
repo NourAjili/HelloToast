@@ -2,6 +2,7 @@ package com.example.hellotoast;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int mCount = 0;
     private TextView mShowCount;
+    private Button b_incr, b_decr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +32,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mShowCount = findViewById(R.id.show_count);
+        b_incr = findViewById(R.id.button_increment);
+        b_decr = findViewById(R.id.button_decrement);
+
     }
 
     public void showToast(View view) {
-        Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "The number is " + mCount, Toast.LENGTH_SHORT).show();
     }
 
     public void countUp(View view) {
         mCount++;
+        if (mShowCount != null) {
+            mShowCount.setText(Integer.toString(mCount));
+        }
+    }
+
+    public void countDown(View view) {
+        mCount--;
         if (mShowCount != null) {
             mShowCount.setText(Integer.toString(mCount));
         }
